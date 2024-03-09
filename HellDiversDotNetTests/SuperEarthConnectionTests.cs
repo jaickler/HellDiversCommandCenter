@@ -44,5 +44,15 @@ namespace HellDiversDotNetTests
             latestEvent.Should().BeOfType<Event>(
                 because: "the function should return an event.");
         }
+
+        [TestMethod]
+        public async Task GetPlanetsReturnsList()
+        {
+            var planets = await superEarthConnection.GetPlanetsAsync();
+
+            planets.Should().NotBeNull();
+            planets.Should().BeOfType<List<Planet>>(
+                because: "the function should return a list of planets.");
+        }
     }
 }
