@@ -42,11 +42,11 @@ namespace HellDiversDotNet.Services
             }
 
             HttpClient client = BaseClient;
-            var response = client.GetFromJsonAsync<List<Event>>
+            var response = await client.GetFromJsonAsync<List<Event>>
                 (new Uri(string.Join('/', 
                 client.BaseAddress, warId, "events")));
 
-            return response.Result;
+            return response;
         }
 
         public async Task<Event?> GetLatestEventAsync(uint? warId = null)
@@ -57,11 +57,26 @@ namespace HellDiversDotNet.Services
             }
 
             HttpClient client = BaseClient;
-            var response = client.GetFromJsonAsync<Event>
+            var response = await client.GetFromJsonAsync<Event>
                 (new Uri(string.Join('/',
                 client.BaseAddress, warId, "events", "latest")));
 
-            return response.Result;
+            return response;
+        }
+
+        public async Task<List<Planet>?> GetPlanetsAsync(uint? warId = null)
+        {
+            if (warId == null)
+            {
+                warId = (await GetBaseContentAsync()).CurrentSeason;
+            }
+
+            HttpClient client = BaseClient;
+            var response = await client.GetFromJsonAsync<List<Planet>>
+                (new Uri(string.Join('/',
+                client.BaseAddress, warId, "planets")));
+
+            return response;
         }
 
 
