@@ -46,6 +46,16 @@ namespace HellDiversDotNetTests
         }
 
         [TestMethod]
+        public async Task GetWarReturnsWar()
+        {
+            var war = await superEarthConnection.GetWarAsync();
+
+            war.Should().NotBeNull();
+            war.Should().BeOfType<War>(
+                because: "the function should return a war(For Super Earth).");
+        }
+
+        [TestMethod]
         public async Task GetPlanetReturnsPlanet()
         {
             var planet = await superEarthConnection.GetPlanetAsync(0);
