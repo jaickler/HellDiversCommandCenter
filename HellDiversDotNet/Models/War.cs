@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace HellDiversDotNet.Models
 {
-    public class WarInfo
+    public class War
     {
         [JsonPropertyName("capitals")]
         public List<uint> Capitals {  get; set; }
@@ -16,9 +16,9 @@ namespace HellDiversDotNet.Models
         [JsonPropertyName("end_date")]
         public DateTime EndDate { get; set; }
 
-        public WarInfo FromJson(string json)
+        public War FromJson(string json)
         {
-            return JsonSerializer.Deserialize<WarInfo>(json);
+            return JsonSerializer.Deserialize<War>(json);
         }
     }
 }
