@@ -64,6 +64,21 @@ namespace HellDiversDotNet.Services
             return response;
         }
 
+        public async Task<Planet?> GetPlanetAsync(uint planetId, uint? warId = null)
+        {
+            if (warId == null)
+            {
+                warId = (await GetBaseContentAsync()).CurrentSeason;
+            }
+
+            HttpClient client = BaseClient;
+            var response = await client.GetFromJsonAsync<Planet>
+                (new Uri(string.Join('/',
+                client.BaseAddress, warId, "planets", planetId)));
+
+            return response;
+        }
+
         public async Task<List<Planet>?> GetPlanetsAsync(uint? warId = null)
         {
             if (warId == null)
