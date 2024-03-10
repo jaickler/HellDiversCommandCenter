@@ -1,4 +1,5 @@
 # Hell Divers Command Center
+[![.NET](https://github.com/jaickler/HellDiversCommandCenter/actions/workflows/dotnet.yml/badge.svg)](https://github.com/jaickler/HellDiversCommandCenter/actions/workflows/dotnet.yml) \
 *The central command for all strategic operations.*
 
 ## Our Mission
