@@ -124,6 +124,21 @@ namespace HellDiversDotNet.Services
             return response;
         }
 
+        public async Task<WarStatus?> GetWarStatusAsync(uint? warId = null)
+        {
+            if (warId == null)
+            {
+                warId = (await GetBaseContentAsync()).CurrentSeason;
+            }
+
+            HttpClient client = BaseClient;
+            WarStatus? response = await client.GetFromJsonAsync<WarStatus?>
+                (new Uri(string.Join('/',
+                client.BaseAddress, warId, "status")));
+
+            return response;
+        }
+
 
         public SuperEarthConnection()
         {
