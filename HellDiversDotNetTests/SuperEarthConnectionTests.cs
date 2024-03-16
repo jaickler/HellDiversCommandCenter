@@ -84,5 +84,15 @@ namespace HellDiversDotNetTests
             planetStatus.Should().BeOfType<PlanetWarStatus>(
                 because: "the function should return a planet's status in the war.");
         }
+
+        [TestMethod]
+        public async Task GetWarStatusReturnWarStatus()
+        {
+            var warStatus = await superEarthConnection.GetWarStatusAsync();
+
+            warStatus.Should().NotBeNull();
+            warStatus.Should().BeOfType<WarStatus>(
+                because: "the function should return a war status.");
+        }
     }
 }
